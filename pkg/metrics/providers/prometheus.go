@@ -143,7 +143,7 @@ func (p *PrometheusProvider) RunQuery(query string) (float64, error) {
 	}
 
 	if 400 <= r.StatusCode {
-		return 0, fmt.Errorf("error response: %s", string(b))
+		return 0, fmt.Errorf("error response: Status %d %s: %s", r.StatusCode, http.StatusText(r.StatusCode), string(b))
 	}
 
 	var result prometheusResponse
